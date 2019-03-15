@@ -21,3 +21,7 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+'''
+使用DP的方法
+'''

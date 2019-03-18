@@ -1,0 +1,31 @@
+import requests
+from bs4 import BeautifulSoup
+import pdfkit
+
+your_URL = "https://blog.csdn.net/u014303046/article/details/78200010"
+your_outfile = "pb1"
+
+html_template = """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+{content}
+</body>
+</html>
+"""
+
+r = requests.get(your_URL)
+
+soup = BeautifulSoup(r.text, "lxml")
+the_blog_div = soup.find('div', class_='blog-content-box')
+the_blog_div = str(the_blog_div)
+html = html_template.format(content=the_blog_div)
+html = html.encode('utf-8')
+
+with open('D:\\'+your_outfile+'.html', 'wb') as f:
+    f.write(html)
+    f.close()
+pdfkit.from_file('D:\\'+your_outfile+'.html', 'D:\\'+your_outfile+'.pdf')

@@ -11,6 +11,13 @@ class TreeNode:
         self.left = None
         self.right = None
 
+def PreTraverse(root:TreeNode):
+    if root == None:
+        return
+    print(root.val,end=' ')
+    PreTraverse(root.left)
+    PreTraverse(root.right)
+
 class Solution:
     def generateTrees(self, n: int):
         if n == 0:
@@ -34,8 +41,14 @@ class Solution:
 
 def main():
     num = int(input())
-    print(Solution().generateTrees(num))
+    for i in Solution().generateTrees(num):
+        PreTraverse(i)
+        print('\n')
 
 if __name__ == '__main__':
     main()
+
+'''
+输出的值为所得二叉搜索树的先序遍历形式
+'''
 
